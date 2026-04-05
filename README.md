@@ -23,7 +23,7 @@ Team operating model, project atlas, and operations infrastructure for Mantrasof
 | Product | Org | Purpose |
 |---------|-----|---------|
 | **GigaFleet** | [Giga-Enterprise](https://github.com/Giga-Enterprise) | White-label fleet management platform |
-| **AgendaFleet** | [AgendaLabs-Inc](https://github.com/AgendaLabs-Inc) | Legacy fleet management (FleetGenius, UWS, CMAX) |
+| **AgendaFleet** | [pdemilly](https://github.com/pdemilly) | Legacy fleet management (FleetGenius, UWS, CMAX) |
 | **AgendaHospice** | [agenda-hospice](https://github.com/agenda-hospice) | Hospice operations management |
 | **Mantrasoft Platform** | [pdemilly](https://github.com/pdemilly/mantrasoft) | Shared platform libraries |
 

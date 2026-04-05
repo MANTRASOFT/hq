@@ -2,15 +2,15 @@
 
 Legacy fleet management platform. Powers FleetGenius, UWS, and CMAX customers. In maintenance mode — primary role is as porting reference for GigaFleet.
 
-**GitHub Org:** [AgendaLabs-Inc](https://github.com/AgendaLabs-Inc)
+**GitHub Owner:** [pdemilly](https://github.com/pdemilly) (personal account)
 **Local Path:** `/home/pascal/projects/agenda-fleet/`
 
 ## Sub-Projects
 
 | Short Name | Repo | Local Path | Tech | Purpose |
 |------------|------|-----------|------|---------|
-| `af-admin` | `agenda-fleet-admin` | `agenda-fleet/agenda-fleet-admin` | Angular 8 | Legacy admin app |
-| `af-backend` | `agenda-fleet-backend-2` | `agenda-fleet/agenda-fleet-backend-2` | Firebase Cloud Functions | Shared backend (AF + GF both use this) |
+| `af-admin` | [`agenda-fleet-admin`](https://github.com/pdemilly/agenda-fleet-admin) | `agenda-fleet/agenda-fleet-admin` | Angular 8 | Legacy admin app |
+| `af-backend` | [`agenda-fleet-backend-2`](https://github.com/pdemilly/agenda-fleet-backend-2) | `agenda-fleet/agenda-fleet-backend-2` | Firebase Cloud Functions | Shared backend (AF + GF both use this) |
 | `af-mobile` | `agenda-fleet-mobile-3-hotfix` | `agenda-fleet/agenda-fleet-mobile-3-hotfix` | Ionic | Legacy driver mobile app |
 | `af-portal` | `agenda-fleet-client-portal2` | `agenda-fleet/agenda-fleet-client-portal2` | Angular | Legacy customer portal |
 | `af-cli` | `agenda-cli` | `agenda-fleet/agenda-cli` | TypeScript | Legacy CLI (to be merged into unified CLI) |
