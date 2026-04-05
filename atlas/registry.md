@@ -99,7 +99,7 @@ Every product should have 3 pinned issues: **Status**, **Session Queue**, **Arch
 | Product | Status | Session Queue | Architecture |
 |---------|--------|--------------|--------------|
 | GigaFleet | [giga-fleet#533](https://github.com/Giga-Enterprise/giga-fleet/issues/533) | [giga-fleet#534](https://github.com/Giga-Enterprise/giga-fleet/issues/534) | [giga-fleet#535](https://github.com/Giga-Enterprise/giga-fleet/issues/535) |
-| AgendaHospice | TBD | TBD | TBD |
+| AgendaHospice | [ah-admin#76](https://github.com/agenda-hospice/agenda-hospice-admin/issues/76) | [ah-admin#77](https://github.com/agenda-hospice/agenda-hospice-admin/issues/77) | [ah-admin#78](https://github.com/agenda-hospice/agenda-hospice-admin/issues/78) |
 | Mantrasoft | TBD | TBD | TBD |
 
 ## Operations
