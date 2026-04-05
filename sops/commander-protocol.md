@@ -23,6 +23,27 @@ How the commander orchestrates the team.
 - Track: update board as tasks move (queued → in progress → done)
 - Anticipate: flag dependencies before they become blockers
 
+## Compat Monitoring (AF ↔ GF)
+
+Both AgendaFleet and GigaFleet evolve simultaneously. Commander is responsible for keeping them in sync.
+
+### Daily
+- Run compat scan during morning briefing
+- Compare with previous scan — flag new divergence
+- If AF got a bug fix in a module that GF has ported, create a GF issue tagged `port`
+
+### Weekly
+- Review AF commits from the week: `git -C /home/pascal/projects/agenda-fleet/agenda-fleet-admin log --oneline --since="7 days ago"`
+- Review AF backend commits: `git -C /home/pascal/projects/agenda-fleet/agenda-fleet-backend-2 log --oneline --since="7 days ago"`
+- Cross-reference with GF compat status — anything that drifted?
+- Create issues for anything that needs syncing
+
+### Rules
+- AF bug fixes always get ported to GF (production safety)
+- GF new features don't go back to AF unless production customers need them
+- Backend is shared (`agenda-fleet-backend-2`) — changes there affect both automatically
+- Compat scan is the source of truth: `gf compat status`
+
 ## End of Day
 
 1. `/commander review` — what changed, what's done
