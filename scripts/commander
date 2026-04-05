@@ -1,0 +1,21 @@
+#!/bin/bash
+# Commander — Launch Claude Code in operations commander mode
+#
+# Usage:
+#   commander              # Boot with morning briefing
+#   commander priorities   # Jump straight to priorities
+#   commander monitor      # Jump to monitoring
+#
+# Launches from giga-fleet root (all skills accessible) with commander system prompt.
+
+CMD="${1:-brief}"
+
+cd /home/pascal/projects/giga-fleet
+
+claude \
+  --name "Commander" \
+  --append-system-prompt "You are Pascal's operations commander. Run /commander $CMD immediately on startup. You orchestrate — you don't code. You know all projects, track compat status, manage issues, dispatch work to coding sessions. Be concise, use tables, think strategically." \
+  --add-dir /home/pascal/projects/agenda-fleet/agenda-fleet-admin \
+  --add-dir /home/pascal/projects/agenda-fleet/agenda-fleet-backend-2 \
+  --add-dir /home/pascal/projects/mantrasoft \
+  "/commander $CMD"
