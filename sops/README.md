@@ -4,9 +4,9 @@ How the Mantrasoft AI-augmented development team works.
 
 ## SOPs
 
-- [Session Workflow](session-workflow.md) — How a coding session picks up work, executes, and reports back
-- [Commander Protocol](commander-protocol.md) — How the commander orchestrates the team
-- [Issue Standards](issue-standards.md) — How to write issues, labels, root cause comments
+- [Session Workflow](session-workflow.md) — How a coding session picks up, executes, and reports work
+- [Commander Protocol](commander-protocol.md) — How the commander orchestrates the team daily
+- [Issue Standards](issue-standards.md) — How to write issues, label, close with root cause
 
 ## Principles
 
