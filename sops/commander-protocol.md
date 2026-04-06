@@ -39,9 +39,11 @@ Both AgendaFleet and GigaFleet evolve simultaneously. Commander is responsible f
 - Create issues for anything that needs syncing
 
 ### Rules
-- AF bug fixes always get ported to GF (production safety)
-- GF new features don't go back to AF unless production customers need them
-- Backend is shared (`agenda-fleet-backend-2`) — changes there affect both automatically
+- **Backend is shared** (`agenda-fleet-backend-2`) — fixes there apply to both AF and GF automatically. Never create "port" issues for backend changes.
+- **UI development direction: GF first.** New features are built in GF. Backport to AF only if FleetGenius specifically needs it.
+- AF frontend bug fixes get ported to GF only if they touch a module GF has already ported
+- GF new features don't go back to AF unless FleetGenius production needs them
+- UWS/tower-specific code is not a porting concern — UWS is migrating to GF legacy mode
 - Compat scan is the source of truth: `gf compat status`
 
 ## End of Day
@@ -50,6 +52,73 @@ Both AgendaFleet and GigaFleet evolve simultaneously. Commander is responsible f
 2. Check issue comments from sessions
 3. Update board and status issues
 4. Suggest tomorrow's priorities
+
+## Resource Management
+
+Pascal is on Claude Max $200/mo. Weekly allocation resets Sunday UTC. Commander manages AI resources like a fleet.
+
+### Model Assignment
+
+| Role | Model | Why |
+|------|-------|-----|
+| Commander | Opus | Strategy, architecture, cross-project decisions |
+| Architecture / Planning | Opus | Complex design, trade-offs |
+| Porting / Wiring | Sonnet | Mechanical work, well-defined tasks |
+| Bug fixes | Sonnet | Focused, narrow scope |
+| Code review | Sonnet | Pattern matching, no creativity needed |
+| New feature design | Opus | Requires judgment, domain knowledge |
+
+### Commander Controls Model Assignment
+
+All coding projects default to Sonnet via `.claude/settings.json`. Commander decides when to escalate.
+
+**When dispatching a task, commander specifies the model in the board/briefing:**
+- Default: Sonnet (no annotation needed)
+- Escalated: add `[OPUS]` tag to the task on the board
+
+**Commander will escalate to Opus when:**
+- Task crosses 3+ files across different architectural layers
+- New feature design requiring judgment (not following an existing pattern)
+- Complex debugging that spans frontend ↔ backend ↔ libs
+- Architecture decisions with long-term consequences
+- Session is stuck after 2+ failed attempts on Sonnet
+
+**Commander keeps Sonnet when:**
+- Porting AF → GF (well-defined source + target)
+- Wiring backend stubs (mechanical)
+- Bug fixes with clear reproduction
+- Adding setup screens (template work)
+- Writing tests
+- Any task with a clear issue description and known file paths
+
+**How sessions escalate:**
+- If a Sonnet session is struggling, Pascal tells commander
+- Commander evaluates and either provides better context or escalates: `claude --model opus`
+- Commander logs the escalation reason for future calibration
+
+### Pacing Rules
+
+1. **Front-load the week** — heavy Opus sessions Mon–Wed, Sonnet-only Thu–Sat if budget is tight
+2. **Dispatch tight tasks** — focused 30-60 min sessions, not open-ended exploration
+3. **Sonnet by default** — only escalate to Opus when the task genuinely needs it
+4. **Monitor burn rate** — if 50%+ by Wednesday, no more Opus for the week unless critical
+5. **Commander stays lean** — brief answers, no unnecessary exploration, compact when context grows
+6. **Track escalations** — note which tasks needed Opus so we can calibrate over time
+
+### Model Settings Locations
+
+All managed by commander. Sessions do not change these.
+
+| Project | Settings File |
+|---------|--------------|
+| giga-fleet | `/home/pascal/projects/giga-fleet/.claude/settings.json` |
+| af-admin | `/home/pascal/projects/agenda-fleet/agenda-fleet-admin/.claude/settings.json` |
+| af-backend | `/home/pascal/projects/agenda-fleet/agenda-fleet-backend-2/.claude/settings.json` |
+| af-tower | `/home/pascal/projects/agenda-fleet/agenda-fleet-tower-uws/.claude/settings.json` |
+| af-mobile | `/home/pascal/projects/agenda-fleet/agenda-fleet-mobile-3-hotfix/.claude/settings.json` |
+| ah-admin | `/home/pascal/projects/agenda-hospice/agenda-hospice-admin/.claude/settings.json` |
+| mantrasoft | `/home/pascal/projects/mantrasoft/.claude/settings.json` |
+| **hq (commander)** | **No override — uses Opus** |
 
 ## Rules
 

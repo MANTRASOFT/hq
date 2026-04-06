@@ -11,6 +11,27 @@ How a Claude coding session picks up work, executes, and reports back.
 5. Pick your task from the available queue
 6. Session reads the full issue, loads context, starts working
 
+## Worktree Isolation
+
+Each session works in its own git worktree to avoid conflicts between parallel sessions.
+
+**How it works:**
+- Claude Code creates worktrees automatically via `isolation: "worktree"` in agent calls
+- Each worktree gets its own branch (e.g., `worktree-agent-<id>`)
+- Sessions commit independently — no merge conflicts during work
+- When done, changes are merged to main (or a feature branch)
+
+**Benefits:**
+- Multiple sessions can work on the same project simultaneously
+- No stepping on each other's files
+- Clean diffs per task
+- Easy to review and merge
+
+**Commander's role:**
+- When dispatching parallel tasks to the same project, ensure worktree isolation
+- Track which worktrees are active
+- Coordinate merges when sessions complete
+
 ## During Work
 
 - Follow the project's CLAUDE.md for conventions
